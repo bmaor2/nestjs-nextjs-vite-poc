@@ -36,6 +36,7 @@ export default function TodoItem({
             ...editData,
             dueDate: editData.dueDate,
         });
+        onCancelEdit();
     };
 
     const priorityColors: Record<string, string> = {
