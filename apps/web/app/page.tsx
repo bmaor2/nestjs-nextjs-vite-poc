@@ -1,8 +1,7 @@
 'use client';
 
-import { TodoList } from '@repo/ui';
+import { TodoList, TodoFormData, TodoUpdateData } from '@repo/ui';
 import { TRPC } from './trpc/client';
-import { TodoFormData, TodoUpdateData } from '@repo/ui';
 
 function TodosApp() {
   const todos = TRPC.todo.find.useQuery();
