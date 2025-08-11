@@ -1,6 +1,11 @@
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
+    "@tailwindcss/postcss": {
+      content: [
+        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+        "../../packages/ui/src/**/*.{js,ts,jsx,tsx}",
+      ],
+    },
   },
 };
 

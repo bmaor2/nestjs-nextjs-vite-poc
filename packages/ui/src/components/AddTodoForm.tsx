@@ -16,7 +16,7 @@ export default function AddTodoForm({ onSubmit, onCancel, isLoading }: AddTodoFo
         priority: 'medium' as 'low' | 'medium' | 'high',
         dueDate: new Date(),
     });
-    console.log('formData: ', formData.dueDate);
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

@@ -8,18 +8,9 @@ importers:
 
   .:
     devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4.1.11
-        version: 4.1.11
-      postcss:
-        specifier: ^8.5.6
-        version: 8.5.6
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
-      tailwindcss:
-        specifier: ^4.1.11
-        version: 4.1.11
       turbo:
         specifier: ^2.5.5
         version: 2.5.5
@@ -271,12 +262,21 @@ importers:
 
   packages/ui:
     dependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.1.11
+        version: 4.1.11
+      postcss:
+        specifier: ^8.5.6
+        version: 8.5.6
       react:
         specifier: ^19.1.0
         version: 19.1.0
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
+      tailwindcss:
+        specifier: ^4.1.11
+        version: 4.1.11
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*

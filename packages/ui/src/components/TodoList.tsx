@@ -7,7 +7,6 @@ import TodoItem from './TodoItem';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorDisplay from './ErrorDisplay';
 import EmptyState from './EmptyState';
-import '../styles.css';
 
 interface TodoListProps {
     todos: TodoApiResponse[] | undefined;
