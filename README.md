@@ -1,135 +1,127 @@
-# Turborepo starter
+# NestJS + Next.js + Vite + tRPC POC
 
-This Turborepo starter is maintained by the Turborepo core team.
+This is a proof-of-concept project demonstrating a monorepo setup with:
 
-## Using this example
+- **Backend**: NestJS server with tRPC
+- **Frontend 1**: Next.js 15 app with App Router
+- **Frontend 2**: Vite + React app
+- **Shared**: tRPC types and UI components
 
-Run the following command:
+## Project Structure
 
-```sh
-npx create-turbo@latest
+```
+nestjs-nextjs-vite-poc/
+├── apps/
+│   ├── server/          # NestJS backend server
+│   ├── web/            # Next.js 15 frontend
+│   └── vite/           # Vite + React frontend
+├── packages/
+│   ├── trpc/           # Shared tRPC router and types
+│   ├── ui/             # Shared React UI components
+│   ├── eslint-config/  # Shared ESLint configuration
+│   └── typescript-config/ # Shared TypeScript configuration
 ```
 
-## What's inside?
+## Features
 
-This Turborepo includes the following packages/apps:
+- **Shared tRPC API**: Both frontends use the same tRPC backend
+- **Shared UI Components**: Todo components are shared between Next.js and Vite apps
+- **Type Safety**: Full TypeScript support across the stack
+- **Modern Tooling**: Uses pnpm workspaces and Turborepo
 
-### Apps and Packages
+## Getting Started
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Prerequisites
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- Node.js 18+
+- pnpm 10+
 
-### Utilities
+### Installation
 
-This Turborepo has some additional tools already setup for you:
+```bash
+pnpm install
+```
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### Development
+
+Start all development servers:
+
+```bash
+pnpm run dev
+```
+
+This will start:
+
+- **Server**: http://localhost:3000 (NestJS backend)
+- **Next.js**: http://localhost:3001 (Next.js frontend)
+- **Vite**: http://localhost:3002 (Vite frontend)
 
 ### Build
 
-To build all apps and packages, run the following command:
+Build all packages and apps:
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm run build
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Linting
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+Lint all packages and apps:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+pnpm run lint
 ```
 
-### Develop
+## Architecture
 
-To develop all apps and packages, run the following command:
+### Backend (NestJS + tRPC)
 
-```
-cd my-turborepo
+The NestJS server provides a tRPC API with the following endpoints:
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+- `todo.find` - Get all todos
+- `todo.findById` - Get a specific todo
+- `todo.create` - Create a new todo
+- `todo.update` - Update an existing todo
+- `todo.delete` - Delete a todo
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+### Shared UI Package
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+The `@repo/ui` package contains reusable React components:
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+- `TodoList` - Main todo list component
+- `TodoItem` - Individual todo item component
+- `AddTodoForm` - Form for adding new todos
+- `LoadingSpinner` - Loading state component
+- `ErrorDisplay` - Error state component
+- `EmptyState` - Empty state component
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+### Frontend Apps
 
-### Remote Caching
+Both frontend apps use the shared UI components and tRPC client to interact with the backend. They provide the same functionality but are built with different frameworks:
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- **Next.js**: Uses App Router and server-side rendering
+- **Vite**: Uses Vite for fast development and building
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## Technology Stack
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- **Backend**: NestJS, tRPC, Zod
+- **Frontend**: React 19, TypeScript
+- **Build Tools**: Vite, Next.js, Turborepo
+- **Package Manager**: pnpm
+- **Styling**: Tailwind CSS
+- **State Management**: TanStack Query (React Query)
 
-```
-cd my-turborepo
+## Development Workflow
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+1. **Shared Components**: Add new UI components to `packages/ui/src/components/`
+2. **Types**: Update types in `packages/ui/src/types/` or `packages/trpc/src/`
+3. **API**: Add new tRPC procedures in `packages/trpc/src/server/server.ts`
+4. **Frontends**: Use shared components and types in both `apps/web/` and `apps/vite/`
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+## Notes
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- Both frontends connect to the same tRPC backend
+- UI components are framework-agnostic and can be used in any React app
+- The project uses modern React patterns and hooks
+- Tailwind CSS is configured for both frontend apps
+- TypeScript provides full type safety across the monorepo
