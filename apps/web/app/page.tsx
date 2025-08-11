@@ -23,14 +23,14 @@ function TodosApp() {
   });
 
   const handleCreateTodo = (data: TodoFormData & { completed: boolean }) => {
-    console.log('Creating todo (Next.js):', data);
+
     createTodo.mutate({
       ...data,
     });
   };
 
   const handleUpdateTodo = (id: string, data: TodoUpdateData) => {
-    console.log('Updating todo (Next.js):', id, data);
+
     updateTodo.mutate({
       id,
       data: {
@@ -47,7 +47,6 @@ function TodosApp() {
   };
 
   const handleDeleteTodo = (id: string) => {
-    console.log('Deleting todo (Next.js):', id);
     deleteTodo.mutate({ id });
   };
 
