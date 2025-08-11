@@ -7,6 +7,7 @@ import TodoItem from './TodoItem';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorDisplay from './ErrorDisplay';
 import EmptyState from './EmptyState';
+import '../styles.css';
 
 interface TodoListProps {
     todos: TodoApiResponse[] | undefined;
@@ -32,7 +33,6 @@ export default function TodoList({
     const [isAddingTodo, setIsAddingTodo] = useState(false);
     const [editingTodo, setEditingTodo] = useState<string | null>(null);
 
-    console.log(todos);
 
     if (isLoading) {
         return <LoadingSpinner />;
@@ -48,7 +48,7 @@ export default function TodoList({
             <div className="mb-6 text-center">
                 <button
                     onClick={() => setIsAddingTodo(true)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-colors duration-200 flex items-center justify-center mx-auto gap-2"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

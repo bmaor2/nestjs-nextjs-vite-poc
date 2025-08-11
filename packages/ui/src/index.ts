@@ -1,3 +1,5 @@
+import "./styles.css";
+
 // Types
 export * from "./types/todo";
 

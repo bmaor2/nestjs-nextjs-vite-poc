@@ -13,10 +13,6 @@ export const TRPC: CreateTRPCReact<AppRouter, object> = createTRPCReact<
 
 export const queryClient = new QueryClient();
 
-console.log(
-  "process.env.NEXT_PUBLIC_TRPC_URL!: ",
-  process.env.NEXT_PUBLIC_TRPC_URL!
-);
 export const trpcClient = TRPC.createClient({
   links: [
     httpBatchLink({

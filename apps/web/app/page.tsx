@@ -57,9 +57,6 @@ function TodosApp() {
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
           ✨ Todo App - Next.js
         </h1>
-        <div className="text-center mb-4 text-sm text-gray-600">
-          Connected to tRPC backend at {process.env.NEXT_PUBLIC_TRPC_URL || '/trpc'}
-        </div>
         <TodoList
           todos={todos.data}
           isLoading={todos.isLoading}
